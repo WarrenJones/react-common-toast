@@ -1,0 +1,83 @@
+* {
+  font-weight: 400;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0, 0, 0.3);
+    transform: scale3d(0, 0, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(-0.3, 0, -0.3);
+    transform: scale3d(-0.3, 0, -0.3);
+  }
+}
+
+.tips-notice-box {
+  position: fixed;
+  box-sizing: border-box;
+  left: 15%;
+  right: 15%;
+  bottom: 20%;
+  text-align: center;
+  z-index: 1010;
+}
+.tips-notice-box.leave {
+  animation-name: zoomOut;
+  animation-duration: 0.3s;
+}
+.tips-notice-box .tips-notice-content {
+  background: rgba(10, 10, 10, 0.67);
+  text-align: center;
+  margin: auto;
+  padding: 0.21333rem;
+  border-radius: 2.66667rem;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 17px;
+  color: #fff;
+  z-index: 1011;
+}
+[data-dpr="2"] .tips-notice-box .tips-notice-content {
+  font-size: 30px;
+}
+[data-dpr="3"] .tips-notice-box .tips-notice-content {
+  font-size: 45px;
+}
+[data-dpr="2"] .tips-notice-box .tips-notice-content {
+  line-height: 34px;
+}
+[data-dpr="3"] .tips-notice-box .tips-notice-content {
+  line-height: 51px;
+}
+.tips-notice-box .tips-notice-content.info {
+  background: rgba(10, 10, 10, 0.67);
+  animation-name: zoomIn;
+  animation-duration: 0.3s;
+}
+.tips-notice-box .tips-notice-content.success {
+  background: rgba(10, 10, 10, 0.67);
+  animation-name: zoomIn;
+  animation-duration: 0.3s;
+}
+.tips-notice-box .tips-notice-content.warning {
+  background: rgba(10, 10, 10, 0.67);
+  animation-name: zoomIn;
+  animation-duration: 0.3s;
+}
+.tips-notice-box .tips-notice-content.error {
+  background: rgba(10, 10, 10, 0.67);
+  animation-name: zoomIn;
+  animation-duration: 0.3s;
+}
