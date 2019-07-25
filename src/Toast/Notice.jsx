@@ -8,6 +8,14 @@ import classNames from "classnames";
 import { PropTypes } from "prop-types";
 
 export default class Notice extends React.Component {
+  static propTypes = {
+    duration: PropTypes.number, // Notice显示时间
+    content: PropTypes.any, // Notice显示的内容
+    onClose: PropTypes.func // 显示结束回调
+  };
+  static defaultProps = {
+    duration: 3000
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -47,18 +55,10 @@ export default class Notice extends React.Component {
   }
   render() {
     const { shouldClose } = this.state;
-    return <div className={classNames({ leave: shouldClose })}>
+    return (
+      <div className={classNames({ leave: shouldClose })}>
         {this.props.content}
       </div>
+    );
   }
 }
-
-Notice.propTypes = {
-  duration: PropTypes.number, // Notice显示时间
-  content: PropTypes.any, // Notice显示的内容
-  onClose: PropTypes.func // 显示结束回调
-};
-
-Notice.defaultProps = {
-  duration: 3000
-};

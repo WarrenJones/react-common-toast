@@ -13,7 +13,30 @@ const getUuid = () => {
   return "notification-" + new Date().getTime() + "-" + noticeNumber++;
 };
 export default class Notification extends React.Component {
- 
+  // Notification增加一个重写方法
+  // 该方法方便Notification组件动态添加到页面中和重写
+  static reWrite = properties => {
+    const { ...props } = properties || {};
+
+    let div = document.createElement("div");
+    document.body.appendChild(div);
+
+    const notification = ReactDOM.render(<Notification {...props} />, div);
+
+    return {
+      notice(noticeProps) {
+        notification.add(noticeProps);
+      },
+      removeNotice(key) {
+        notification.remove(key);
+      },
+      destroy() {
+        ReactDOM.unmountComponentAtNode(div);
+        document.body.removeChild(div);
+      },
+      component: notification
+    };
+  };
 
   constructor(props) {
     super(props);
@@ -86,28 +109,3 @@ export default class Notification extends React.Component {
     );
   }
 }
-
- // Notification增加一个重写方法
-  // 该方法方便Notification组件动态添加到页面中和重写
-Notification.reWrite = properties => {
-  const { ...props } = properties || {};
-
-  let div = document.createElement("div");
-  document.body.appendChild(div);
-
-  const notification = ReactDOM.render(<Notification {...props} />, div);
-
-  return {
-    notice(noticeProps) {
-      notification.add(noticeProps);
-    },
-    removeNotice(key) {
-      notification.remove(key);
-    },
-    destroy() {
-      ReactDOM.unmountComponentAtNode(div);
-      document.body.removeChild(div);
-    },
-    component: notification
-  };
-};

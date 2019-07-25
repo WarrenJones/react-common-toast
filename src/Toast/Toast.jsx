@@ -16,11 +16,10 @@ const getNewNotification = () => {
 
   return newNotification;
 };
+
 // notice方法实际上就是集合参数 完成对Notification的改变
 const notice = (content, type, duration = 3000, onClose, mask = true) => {
   if (!content) return;
-
-//   content = content.toString();
 
   let notificationInstance = getNewNotification();
 
